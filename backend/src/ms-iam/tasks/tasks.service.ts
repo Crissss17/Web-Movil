@@ -10,7 +10,7 @@ export class TasksService {
     constructor(@InjectModel(Task.name) private taskModel: Model<Task>) {}
 
     finAll() {
-        this.taskModel.find();
+        return this.taskModel.find();
     }
     async create(createTask:CreateTaskDto) {
        const newTask =  new this.taskModel(createTask);
@@ -26,6 +26,6 @@ export class TasksService {
     }
 
     async update(id:string, task: UpdateTaskDto){
-        return this.taskModel.findByIdAndUpdate(id, task);
+        return this.taskModel.findByIdAndUpdate(id, task, {new:true});
     }
 }

@@ -8,7 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "target": "ES2021",
     "sourceMap": true,
-    "outDir": "ms-1/dist",
+    "outDir": "ms/dist",
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
