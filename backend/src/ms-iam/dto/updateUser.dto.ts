@@ -1,7 +1,7 @@
 import { IsBoolean, IsString, IsOptional, isNotEmpty, IsNotEmpty} from "class-validator";
 
 
-export class UpdateTaskDto {
+export class UpdateUserDto {
 
     @IsString()
     @IsOptional()

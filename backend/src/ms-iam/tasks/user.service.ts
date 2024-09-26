@@ -1,31 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Task } from 'src/ms-iam/schemas/user.schema';
+import { User } from 'src/ms-iam/schemas/user.schema';
 import { Model } from 'mongoose';
-import { CreateTaskDto } from 'src/ms-iam/dto/create-task.dto';
-import { UpdateTaskDto } from 'src/ms-iam/dto/update-task.dto';
+import { CreateUserDto } from 'src/ms-iam/dto/createUser.dto';
+import { UpdateUserDto } from 'src/ms-iam/dto/updateUser.dto';
 
 @Injectable()
-export class TasksService {
-    constructor(@InjectModel(Task.name) private taskModel: Model<Task>) {}
+export class UserService {
+    constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
     finAll() {
-        return this.taskModel.find();
+        return this.userModel.find();
     }
-    async create(createTask:CreateTaskDto) {
-       const newTask =  new this.taskModel(createTask);
+    async create(createTask:CreateUserDto) {
+       const newTask =  new this.userModel(createTask);
        return newTask.save();
     }
 
     async findOne(id:string){
-       return this.taskModel.findById(id);
+       return this.userModel.findById(id);
     }
 
     async delete(id:string){
-        return this.taskModel.findByIdAndDelete(id);
+        return this.userModel.findByIdAndDelete(id);
     }
 
-    async update(id:string, task: UpdateTaskDto){
-        return this.taskModel.findByIdAndUpdate(id, task, {new:true});
+    async update(id:string, task: UpdateUserDto){
+        return this.userModel.findByIdAndUpdate(id, task, {new:true});
     }
 }

@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
-import { TasksController } from './user.controller';
-import { TasksService } from './user.service';
+import { UserController } from './user.controller';
+import { UserService } from './user.service';
 import { MongooseModule} from '@nestjs/mongoose';
-import { Task, TaskSchema } from 'src/ms-iam/schemas/user.schema';
+import { User, TaskSchema } from 'src/ms-iam/schemas/user.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([
       {
-        name:Task.name,
+        name:User.name,
         schema: TaskSchema,
       },
     ])
   ],
-  controllers: [TasksController],
-  providers: [TasksService]
+  controllers: [UserController],
+  providers: [UserService]
 })
 export class TasksModule {}
