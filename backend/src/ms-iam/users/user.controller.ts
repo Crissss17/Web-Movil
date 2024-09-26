@@ -13,9 +13,9 @@ export class UserController {
 
     @Get(':id')
     async findOne(@Param('id') id: string) {
-        const task = await this.userService.findOne(id);
-        if(!task) throw new NotFoundException('Tarea no encontrada');
-        return task;
+        const user = await this.userService.findOne(id);
+        if(!user) throw new NotFoundException('Tarea no encontrada');
+        return user;
     }
 
     @Post()
@@ -33,16 +33,16 @@ export class UserController {
     @Delete(':id')
     @HttpCode(204)
     async delete(@Param('id') id: string){
-        const task = await this.userService.delete(id);
-        if(!task) throw new NotFoundException('Tarea no encontrada');
-        return task;
+        const user = await this.userService.delete(id);
+        if(!user) throw new NotFoundException('Usario no encontrado');
+        return user;
     }
 
     @Put(':id')
     async update(@Param('id') id: string, @Body() body: any) {
-        const task = await this.userService.update(id, body);
-        if(!task) throw new NotFoundException('Tarea no encontrada');
-        return task;
+        const user = await this.userService.update(id, body);
+        if(!user) throw new NotFoundException('Usuario no encontrado');
+        return user;
     }
 }
 

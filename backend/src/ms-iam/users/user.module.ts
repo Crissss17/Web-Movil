@@ -16,4 +16,4 @@ import { User, TaskSchema } from 'src/ms-iam/schemas/user.schema';
   controllers: [UserController],
   providers: [UserService]
 })
-export class TasksModule {}
+export class UserModule {}

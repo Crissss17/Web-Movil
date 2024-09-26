@@ -9,11 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TaskSchema = exports.Task = void 0;
+exports.TaskSchema = exports.User = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-let Task = class Task {
+let User = class User {
 };
-exports.Task = Task;
+exports.User = User;
 __decorate([
     (0, mongoose_1.Prop)({
         unique: true,
@@ -21,23 +21,23 @@ __decorate([
         trim: true
     }),
     __metadata("design:type", String)
-], Task.prototype, "title", void 0);
+], User.prototype, "title", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         trim: true
     }),
     __metadata("design:type", String)
-], Task.prototype, "description", void 0);
+], User.prototype, "description", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         default: false,
     }),
     __metadata("design:type", Boolean)
-], Task.prototype, "done", void 0);
-exports.Task = Task = __decorate([
+], User.prototype, "done", void 0);
+exports.User = User = __decorate([
     (0, mongoose_1.Schema)({
         timestamps: true
     })
-], Task);
-exports.TaskSchema = mongoose_1.SchemaFactory.createForClass(Task);
-//# sourceMappingURL=task.schema.js.map
+], User);
+exports.TaskSchema = mongoose_1.SchemaFactory.createForClass(User);
+//# sourceMappingURL=user.schema.js.map

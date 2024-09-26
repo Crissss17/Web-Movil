@@ -9,24 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpdateTaskDto = void 0;
+exports.UpdateUserDto = void 0;
 const class_validator_1 = require("class-validator");
-class UpdateTaskDto {
+class UpdateUserDto {
 }
-exports.UpdateTaskDto = UpdateTaskDto;
+exports.UpdateUserDto = UpdateUserDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UpdateTaskDto.prototype, "tittle", void 0);
+], UpdateUserDto.prototype, "tittle", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UpdateTaskDto.prototype, "description", void 0);
+], UpdateUserDto.prototype, "description", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Boolean)
-], UpdateTaskDto.prototype, "done", void 0);
-//# sourceMappingURL=update-task.dto.js.map
+], UpdateUserDto.prototype, "done", void 0);
+//# sourceMappingURL=updateUser.dto.js.map

@@ -12,36 +12,36 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TasksService = void 0;
+exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const task_schema_1 = require("../schemas/task.schema");
+const user_schema_1 = require("../schemas/user.schema");
 const mongoose_2 = require("mongoose");
-let TasksService = class TasksService {
-    constructor(taskModel) {
-        this.taskModel = taskModel;
+let UserService = class UserService {
+    constructor(userModel) {
+        this.userModel = userModel;
     }
     finAll() {
-        return this.taskModel.find();
+        return this.userModel.find();
     }
     async create(createTask) {
-        const newTask = new this.taskModel(createTask);
+        const newTask = new this.userModel(createTask);
         return newTask.save();
     }
     async findOne(id) {
-        return this.taskModel.findById(id);
+        return this.userModel.findById(id);
     }
     async delete(id) {
-        return this.taskModel.findByIdAndDelete(id);
+        return this.userModel.findByIdAndDelete(id);
     }
     async update(id, task) {
-        return this.taskModel.findByIdAndUpdate(id, task, { new: true });
+        return this.userModel.findByIdAndUpdate(id, task, { new: true });
     }
 };
-exports.TasksService = TasksService;
-exports.TasksService = TasksService = __decorate([
+exports.UserService = UserService;
+exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(task_schema_1.Task.name)),
+    __param(0, (0, mongoose_1.InjectModel)(user_schema_1.User.name)),
     __metadata("design:paramtypes", [mongoose_2.Model])
-], TasksService);
-//# sourceMappingURL=tasks.service.js.map
+], UserService);
+//# sourceMappingURL=user.service.js.map

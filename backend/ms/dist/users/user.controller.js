@@ -12,68 +12,68 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TasksController = void 0;
+exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
-const tasks_service_1 = require("./tasks.service");
-const create_task_dto_1 = require("../dto/create-task.dto");
-let TasksController = class TasksController {
-    constructor(tasksService) {
-        this.tasksService = tasksService;
+const user_service_1 = require("./user.service");
+const createUser_dto_1 = require("../dto/createUser.dto");
+let UserController = class UserController {
+    constructor(userService) {
+        this.userService = userService;
     }
     findAll() {
-        return this.tasksService.finAll();
+        return this.userService.finAll();
     }
     async findOne(id) {
-        const task = await this.tasksService.findOne(id);
-        if (!task)
+        const user = await this.userService.findOne(id);
+        if (!user)
             throw new common_1.NotFoundException('Tarea no encontrada');
-        return task;
+        return user;
     }
     async create(body) {
         try {
-            return await this.tasksService.create(body);
+            return await this.userService.create(body);
         }
         catch (error) {
             if (error.code == 11000) {
-                throw new common_1.ConflictException('Ya Existe esta tarea');
+                throw new common_1.ConflictException('Ya Existe este usuario');
             }
             throw error;
         }
     }
     async delete(id) {
-        const task = await this.tasksService.delete(id);
-        if (!task)
-            throw new common_1.NotFoundException('Tarea no encontrada');
-        return task;
+        const user = await this.userService.delete(id);
+        if (!user)
+            throw new common_1.NotFoundException('Usario no encontrado');
+        return user;
     }
     async update(id, body) {
-        const task = await this.tasksService.update(id, body);
-        if (!task)
-            throw new common_1.NotFoundException('Tarea no encontrada');
-        return task;
+        const user = await this.userService.update(id, body);
+        if (!user)
+            throw new common_1.NotFoundException('Usuario no encontrado');
+        return user;
     }
 };
-exports.TasksController = TasksController;
+exports.UserController = UserController;
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], TasksController.prototype, "findAll", null);
+], UserController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "findOne", null);
+], UserController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_task_dto_1.CreateTaskDto]),
+    __metadata("design:paramtypes", [createUser_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "create", null);
+], UserController.prototype, "create", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     (0, common_1.HttpCode)(204),
@@ -81,7 +81,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "delete", null);
+], UserController.prototype, "delete", null);
 __decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -89,9 +89,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "update", null);
-exports.TasksController = TasksController = __decorate([
+], UserController.prototype, "update", null);
+exports.UserController = UserController = __decorate([
     (0, common_1.Controller)('ms-iam'),
-    __metadata("design:paramtypes", [tasks_service_1.TasksService])
-], TasksController);
-//# sourceMappingURL=tasks.controller.js.map
+    __metadata("design:paramtypes", [user_service_1.UserService])
+], UserController);
+//# sourceMappingURL=user.controller.js.map
