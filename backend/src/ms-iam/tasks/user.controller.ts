@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Delete, Put, Body, Param, ConflictException, NotFoundException, HttpCode } from '@nestjs/common';
-import { TasksService } from './tasks.service';
-import { CreateTaskDto } from '../dto/create-task.dto';
+import { TasksService } from './user.service';
+import { CreateTaskDto } from '../dto/createUser.dto';
 
 @Controller('ms-iam')
 export class TasksController {
