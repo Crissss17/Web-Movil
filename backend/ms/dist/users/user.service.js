@@ -30,6 +30,9 @@ let UserService = class UserService {
     async updatePassword(userId, newPassword) {
         await this.usersRepository.update(userId, { password: newPassword });
     }
+    async findAll() {
+        return this.usersRepository.find();
+    }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([

@@ -1,34 +1,34 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
+import { ObjectType, Field, ID } from '@nestjs/graphql';
 
 @ObjectType()
 @Entity()
 export class User {
-  @Field(() => ID) // GraphQL: Usar ID para el campo id
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Field(() => ID)
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Field() // GraphQL: Exponer este campo
-    @Column({ length: 500 })
-    name: string;
+  @Field()
+  @Column({ length: 500 })
+  name: string;
 
-  @Field() // GraphQL: Exponer este campo
-    @Column({ length: 100 })
-    apellidos: string;
+  @Field()
+  @Column({ length: 100 })
+  apellidos: string;
 
-  @Field() // GraphQL: Exponer este campo
-    @Column({ unique: true, nullable: false })
-    email: string;
+  @Field()
+  @Column({ unique: true, nullable: false })
+  email: string;
 
-  @Field() // GraphQL: No exponer el campo de contraseña para consultas, pero aquí se muestra cómo sería si quisieras
-    @Column({ nullable: false })
-    password: string;
+  @Field()
+  @Column({ nullable: false })
+  password: string;
 
-  @Field() // GraphQL: Exponer este campo
-    @Column({ default: "user" })
-    rol: string;
+  @Field()
+  @Column({ default: "user" })
+  rol: string;
 
-  @Field(() => Boolean) // GraphQL: Usar Boolean para este campo
-    @Column({ default: true })
-    cuentaActiva: boolean;
+  @Field(() => Boolean)
+  @Column({ default: true })
+  cuentaActiva: boolean;
 }

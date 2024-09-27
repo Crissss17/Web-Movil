@@ -18,16 +18,16 @@ let AuthModule = class AuthModule {
 exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [user_module_1.UsersModule,
+        imports: [
+            user_module_1.UsersModule,
             jwt_1.JwtModule.register({
                 global: true,
                 secret: jwt_constant_1.jwtConstants.secret,
                 signOptions: {
-                    expiresIn: '80000s'
+                    expiresIn: '80000s',
                 },
             }),
         ],
-        controllers: [],
         providers: [auth_service_1.AuthService, auth_resolver_1.AuthResolver],
     })
 ], AuthModule);
