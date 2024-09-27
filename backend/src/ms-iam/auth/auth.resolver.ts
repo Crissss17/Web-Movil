@@ -38,6 +38,3 @@ export class AuthResolver{
         return "This query does nothing.";
     }
 }
-
-//guardarlo en una cockie
-//
