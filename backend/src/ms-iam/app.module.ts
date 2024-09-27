@@ -11,7 +11,7 @@ import { User } from './users/entities/user.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb://localhost:27017/users',
+      url: 'mongodb://localhost:27017/ms1',
       useNewUrlParser: true,
       useUnifiedTopology: true,
       entities: [User],

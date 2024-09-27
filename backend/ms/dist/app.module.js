@@ -23,7 +23,7 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mongodb',
-                url: 'mongodb://localhost:27017/users',
+                url: 'mongodb://localhost:27017/ms1',
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
                 entities: [user_entity_1.User],
