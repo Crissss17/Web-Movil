@@ -3,23 +3,23 @@ declare const _default: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    username: string;
     email: string;
     password: string;
+    username: string;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    username: string;
     email: string;
     password: string;
+    username: string;
 }> & {
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    username: string;
     email: string;
     password: string;
+    username: string;
 } & {
     _id: mongoose.Types.ObjectId;
 }, mongoose.Schema<any, mongoose.Model<any, any, any, any, any, any>, {}, {}, {}, {}, {
@@ -28,23 +28,23 @@ declare const _default: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    username: string;
     email: string;
     password: string;
+    username: string;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    username: string;
     email: string;
     password: string;
+    username: string;
 }>> & mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    username: string;
     email: string;
     password: string;
+    username: string;
 }> & {
     _id: mongoose.Types.ObjectId;
 }>>;

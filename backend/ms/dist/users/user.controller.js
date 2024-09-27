@@ -12,86 +12,28 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = void 0;
+exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
-const createUser_dto_1 = require("../dto/createUser.dto");
-let UserController = class UserController {
-    constructor(userService) {
-        this.userService = userService;
+const createUser_dto_1 = require("./dto/createUser.dto");
+let UsersController = class UsersController {
+    constructor(usersService) {
+        this.usersService = usersService;
     }
-    findAll() {
-        return this.userService.finAll();
-    }
-    async findOne(id) {
-        const user = await this.userService.findOne(id);
-        if (!user)
-            throw new common_1.NotFoundException('Tarea no encontrada');
-        return user;
-    }
-    async create(body) {
-        try {
-            return await this.userService.create(body);
-        }
-        catch (error) {
-            if (error.code == 11000) {
-                throw new common_1.ConflictException('Ya Existe este usuario');
-            }
-            throw error;
-        }
-    }
-    async delete(id) {
-        const user = await this.userService.delete(id);
-        if (!user)
-            throw new common_1.NotFoundException('Usario no encontrado');
-        return user;
-    }
-    async update(id, body) {
-        const user = await this.userService.update(id, body);
-        if (!user)
-            throw new common_1.NotFoundException('Usuario no encontrado');
-        return user;
+    create(createUserDto) {
+        return this.usersService.create(createUserDto);
     }
 };
-exports.UserController = UserController;
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], UserController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "findOne", null);
+exports.UsersController = UsersController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [createUser_dto_1.CreateUserDto]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "create", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    (0, common_1.HttpCode)(204),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "delete", null);
-__decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, Object]),
-    __metadata("design:returntype", Promise)
-], UserController.prototype, "update", null);
-exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)('ms-iam'),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "create", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [user_service_1.UserService])
-], UserController);
+], UsersController);
 //# sourceMappingURL=user.controller.js.map

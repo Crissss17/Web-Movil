@@ -8,16 +8,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const user_module_1 = require("./users/user.module");
+const typeorm_1 = require("@nestjs/typeorm");
 const mongoose_1 = require("@nestjs/mongoose");
+const graphql_1 = require("@nestjs/graphql");
+const apollo_1 = require("@nestjs/apollo");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forRoot('mongodb://localhost:27017'),
-            user_module_1.UserModule
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'mongodb',
+                url: 'mongodb://localhost:27017/test',
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                entities: [],
+                synchronize: true,
+            }),
+            mongoose_1.MongooseModule.forRoot('mongodb://localhost:27017/test'),
+            graphql_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                autoSchemaFile: true,
+            }),
+            auth_module_1.AuthModule,
         ],
     })
 ], AppModule);

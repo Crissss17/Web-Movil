@@ -1,31 +1,27 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { User } from 'src/ms-iam/schemas/user.schema';
-import { Model } from 'mongoose';
-import { CreateUserDto } from 'src/ms-iam/dto/createUser.dto';
-import { UpdateUserDto } from 'src/ms-iam/dto/updateUser.dto';
+import { Injectable } from "@nestjs/common";
+
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { CreateUserDto } from "./dto/createUser.dto";
+
+import { User } from "./entities/user.entity";
 
 @Injectable()
 export class UserService {
-    constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectRepository(User)
+    private readonly usersRepository: Repository<User>
+  ) {}
 
-    finAll() {
-        return this.userModel.find();
-    }
-    async create(createTask:CreateUserDto) {
-       const newTask =  new this.userModel(createTask);
-       return newTask.save();
-    }
+  async create(createUserDto: CreateUserDto) {
+    return await this.usersRepository.save(createUserDto);
+  }
 
-    async findOne(id:string){
-       return this.userModel.findById(id);
-    }
+  async findOneByEmail(email: string): Promise<User | undefined> {
+    return await this.usersRepository.findOneBy({ email });
+  }
 
-    async delete(id:string){
-        return this.userModel.findByIdAndDelete(id);
-    }
-
-    async update(id:string, task: UpdateUserDto){
-        return this.userModel.findByIdAndUpdate(id, task, {new:true});
-    }
+  async updatePassword(userId: number, newPassword: string): Promise<void> {
+    await this.usersRepository.update(userId, { password: newPassword });
+}
 }

@@ -1,19 +1,15 @@
-import { Module } from '@nestjs/common';
-import { UserController } from './user.controller';
-import { UserService } from './user.service';
-import { MongooseModule} from '@nestjs/mongoose';
-import { User, TaskSchema } from 'src/ms-iam/schemas/user.schema';
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { User } from "./entities/user.entity";
+import { UsersController } from "./user.controller";
+import { UserService } from "./user.service";
+//import { UsersResolver } from './users.resolver';
+
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      {
-        name:User.name,
-        schema: TaskSchema,
-      },
-    ])
-  ],
-  controllers: [UserController],
-  providers: [UserService]
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UsersController],
+  providers: [UserService],
+  exports: [UserService],
 })
-export class UserModule {}
+export class UsersModule {}

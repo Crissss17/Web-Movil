@@ -14,34 +14,27 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
-const mongoose_1 = require("@nestjs/mongoose");
-const user_schema_1 = require("../schemas/user.schema");
-const mongoose_2 = require("mongoose");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
+const user_entity_1 = require("./entities/user.entity");
 let UserService = class UserService {
-    constructor(userModel) {
-        this.userModel = userModel;
+    constructor(usersRepository) {
+        this.usersRepository = usersRepository;
     }
-    finAll() {
-        return this.userModel.find();
+    async create(createUserDto) {
+        return await this.usersRepository.save(createUserDto);
     }
-    async create(createTask) {
-        const newTask = new this.userModel(createTask);
-        return newTask.save();
+    async findOneByEmail(email) {
+        return await this.usersRepository.findOneBy({ email });
     }
-    async findOne(id) {
-        return this.userModel.findById(id);
-    }
-    async delete(id) {
-        return this.userModel.findByIdAndDelete(id);
-    }
-    async update(id, task) {
-        return this.userModel.findByIdAndUpdate(id, task, { new: true });
+    async updatePassword(userId, newPassword) {
+        await this.usersRepository.update(userId, { password: newPassword });
     }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(user_schema_1.User.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], UserService);
 //# sourceMappingURL=user.service.js.map
