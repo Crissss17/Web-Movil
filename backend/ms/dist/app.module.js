@@ -23,13 +23,13 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'mongodb',
-                url: 'mongodb://localhost:27017/test',
+                url: 'mongodb://localhost:27017/users',
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
                 entities: [user_entity_1.User],
                 synchronize: true,
             }),
-            mongoose_1.MongooseModule.forRoot('mongodb://localhost:27017/test'),
+            mongoose_1.MongooseModule.forRoot('mongodb://localhost:27017/users'),
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: true,

@@ -11,13 +11,13 @@ import { User } from './users/entities/user.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb://localhost:27017/test',
+      url: 'mongodb://localhost:27017/users',
       useNewUrlParser: true,
       useUnifiedTopology: true,
       entities: [User],
       synchronize: true,
     }),
-    MongooseModule.forRoot('mongodb://localhost:27017/test'),
+    MongooseModule.forRoot('mongodb://localhost:27017/users'),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
