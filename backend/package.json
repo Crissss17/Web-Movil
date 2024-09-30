@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "0.0.1",
-  "description": "",
+  "description": "<p align=\"center\">\r   <a href=\"http://nestjs.com/\" target=\"blank\"><img src=\"https://nestjs.com/img/logo-small.svg\" width=\"120\" alt=\"Nest Logo\" /></a>\r </p>",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
@@ -37,6 +37,8 @@
     "class-validator": "^0.14.1",
     "googleapis": "^144.0.0",
     "graphql": "^16.9.0",
+    "has-flag": "^5.0.1",
+    "is-extglob": "^2.1.1",
     "mongodb": "^5.9.2",
     "mongoose": "^8.6.4",
     "nodemailer": "^6.9.15",
@@ -85,5 +87,10 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }
