@@ -21,7 +21,7 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongo-server
       ME_CONFIG_MONGODB_PORT: 27017
     ports:
-      - "8081:8081"
+      - "27017:27017"
     networks:
       - mongodb_network
 

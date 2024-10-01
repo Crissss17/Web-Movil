@@ -1,29 +1,45 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/createUser.dto';
+import { UpdateUserDto } from './dto/updateUser.dto';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { User } from '../schemas/user.schema';
+import { mongoErrorHandler } from '../utils/mongo-error-handler';
+import { MongoError } from 'mongodb';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(User)
-    private readonly usersRepository: Repository<User>
-  ) {}
+  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    return await this.usersRepository.save(createUserDto);
+  async create(createUserDto: CreateUserDto) {
+    try {
+      return await this.userModel.create(createUserDto);
+    } catch (error) {
+      if ((error as Record<string, number>)?.code)
+        mongoErrorHandler(error as MongoError);
+      throw new Error(error as string);
+    }
   }
 
-  async findOneByEmail(email: string): Promise<User | undefined> {
-    return await this.usersRepository.findOneBy({ email });
+  async findAll() {
+    return await this.userModel.find().exec();
   }
 
-  async updatePassword(userId: number, newPassword: string): Promise<void> {
-    await this.usersRepository.update(userId, { password: newPassword });
+  findOne(id: string) {
+    return this.userModel.findById(id).exec();
   }
 
-  async findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    try {
+      return await this.userModel.updateOne({ _id: id }, updateUserDto);
+    } catch (error: unknown) {
+      if ((error as Record<string, number>)?.code)
+        mongoErrorHandler(error as MongoError);
+      throw new Error(error as string);
+    }
+  }
+
+  async remove(id: string) {
+    return await this.userModel.deleteOne({ _id: id });
   }
 }
