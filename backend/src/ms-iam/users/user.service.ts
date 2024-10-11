@@ -6,23 +6,29 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../schemas/user.schema';
 import { mongoErrorHandler } from '../utils/mongo-error-handler';
 import { MongoError } from 'mongodb';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UserService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async create(createUserDto: CreateUserDto) {
-    try {
-      return await this.userModel.create(createUserDto);
-    } catch (error) {
-      if ((error as Record<string, number>)?.code)
-        mongoErrorHandler(error as MongoError);
-      throw new Error(error as string);
+  async create(createUserDto: CreateUserDto): Promise<User> {
+    const { password } = createUserDto;
+    
+    // Asegúrate de que la contraseña esté definida
+    if (!password || typeof password !== 'string') {
+      throw new Error('La contraseña es obligatoria y debe ser una cadena de texto');
     }
+    
+    // Encriptar la contraseña antes de guardarla
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const createdUser = new this.userModel({ ...createUserDto, password: hashedPassword });
+    
+    return createdUser.save();
   }
 
-  async findAll() {
-    return await this.userModel.find().exec();
+  async findAll(): Promise<User[]> {
+    return this.userModel.find().exec();  // Retorna todos los usuarios
   }
 
   findOne(id: string) {

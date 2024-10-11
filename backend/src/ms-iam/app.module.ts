@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './users/user.module';
+import { AuthModule } from './auth/auth.module';  // Agrega AuthModule
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
@@ -16,10 +15,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         dbName: configService.get<string>('MONGODB_DATABASE'),
       }),
     }),
-
-    UserModule,
+    UserModule,  // Registro de UserModule
+    AuthModule,  // Asegúrate de registrar AuthModule aquí
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
+
