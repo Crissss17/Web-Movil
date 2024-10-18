@@ -24,8 +24,8 @@ export class AuthService {
       throw new UnauthorizedException('Contraseña incorrecta');
     }
 
-    const accessToken = jwt.sign({ userId: user._id, email: user.email }, this.jwtSecret, { expiresIn: '10s' });
-    const refreshToken = jwt.sign({ userId: user._id, email: user.email }, this.jwtRefreshSecret, { expiresIn: '20s' });
+    const accessToken = jwt.sign({ userId: user._id, email: user.email }, this.jwtSecret, { expiresIn: '3m' });
+    const refreshToken = jwt.sign({ userId: user._id, email: user.email }, this.jwtRefreshSecret, { expiresIn: '5m' });
 
     return { accessToken, refreshToken };
   }
@@ -46,10 +46,11 @@ export class AuthService {
       const decoded = jwt.verify(refreshToken, this.jwtRefreshSecret);
       const newAccessToken = jwt.sign({ userId: (decoded as any).userId, email: (decoded as any).email }, this.jwtSecret, { expiresIn: '10s' });
       const newRefreshToken = jwt.sign({ userId: (decoded as any).userId, email: (decoded as any).email }, this.jwtRefreshSecret, { expiresIn: '20s' });
-
+  
       return { accessToken: newAccessToken, refreshToken: newRefreshToken };
     } catch (error) {
       throw new UnauthorizedException('Refresh token inválido o expirado');
     }
   }
+  
 }
